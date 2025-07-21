@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页 / 作品集</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <img src="bcc07fd534f1525244fd169de11724c219451380.png.png" alt="头像" class="site-avatar">
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="portfolio.html">作品集</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn" onclick="openLoginModal()">登录</button>
+        </div>
+    </header>
+    <main>
+        <section id="home" class="hero-section">
+            <div class="container">
+                <h1>欢迎来到我的个人主页</h1>
+                <p>这里展示了我的项目与设计作品，欢迎浏览！</p>
+            </div>
+        </section>
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2>作品集</h2>
+                <div class="portfolio-list">
+                    <div class="portfolio-item" onclick="showPhoto()">作品1</div>
+                    <div class="portfolio-item">作品2</div>
+                    <div class="portfolio-item">作品3</div>
+                </div>
+            </div>
+        </section>
+        <section id="photo" class="photo-section" style="display:none;">
+            <div class="container">
+                <h2>我的照片</h2>
+                <div class="photo-container">
+                    <img id="myPhoto" src="无标题.png" alt="我的照片" style="max-width: 100%; border-radius: 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.18);">
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 登录弹窗 -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>登录</h2>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <input type="text" placeholder="用户名" required>
+                <input type="password" placeholder="密码" required>
+                <button type="submit">登录</button>
+            </form>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html> 
