@@ -1,62 +1,437 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页 / 作品集</title>
+    <title>黄晨翔 - 个人简历</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="main-header">
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>黄晨翔</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于我</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#education" class="nav-link">教育经历</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">专业技能</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#awards" class="nav-link">荣誉奖项</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">联系方式</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页部分 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1 class="hero-title">你好，我是<span class="highlight">黄晨翔</span></h1>
+                <p class="hero-subtitle">工业设计专业学生 | 热爱设计与创新</p>
+                <p class="hero-description">
+                    一名充满创意和热情的工业设计师，专注于产品设计、用户界面设计和3D建模。
+                    具备多种设计软件技能，致力于创造优秀的设计作品。
+                </p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">了解更多</a>
+                    <a href="#contact" class="btn btn-secondary">联系我</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-image">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiByeD0iMTUwIiBmaWxsPSIjNjM2NkYxIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTEwMCAyMDBMMjAwIDIwMEMxOTAuNDMgMTgwIDEzNSAxNzAgMTUwIDE3MEMxNjUgMTcwIDEwOS41NyAxODAgMTAwIDIwMFoiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+" alt="头像" class="profile-image">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- 关于我部分 -->
+    <section id="about" class="about">
         <div class="container">
-            <img src="bcc07fd534f1525244fd169de11724c219451380.png.png" alt="头像" class="site-avatar">
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">首页</a></li>
-                    <li><a href="portfolio.html">作品集</a></li>
-                </ul>
-            </nav>
-            <button class="login-btn" onclick="openLoginModal()">登录</button>
-        </div>
-    </header>
-    <main>
-        <section id="home" class="hero-section">
-            <div class="container">
-                <h1>欢迎来到我的个人主页</h1>
-                <p>这里展示了我的项目与设计作品，欢迎浏览！</p>
-            </div>
-        </section>
-        <section id="portfolio" class="portfolio-section">
-            <div class="container">
-                <h2>作品集</h2>
-                <div class="portfolio-list">
-                    <div class="portfolio-item" onclick="showPhoto()">作品1</div>
-                    <div class="portfolio-item">作品2</div>
-                    <div class="portfolio-item">作品3</div>
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-left">
+                    <div class="about-card">
+                        <h3>个人信息</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-user"></i>
+                                <span>姓名：黄晨翔</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-birthday-cake"></i>
+                                <span>年龄：20岁</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>专业：工业设计</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>特长：入党积极分子</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-right">
+                    <div class="about-text">
+                        <h3>个人优势</h3>
+                        <p class="advantage-description">
+                            擅长领域：团队协作，善于与人沟通，有手绘动手能力。熟悉PS、Blender、Keyshot、Pr、Ae、MySQL、C++、AUTOCAD、SolidWorks、Rhino、Xmind、Powerpoint、Excel、Word、WPS等专业软件。
+                        </p>
+                        <p class="experience-description">
+                            相关经验：能够首先使用rhino软件进行产品建模，再通过blender软件进行渲染并且制作动画，最后善用ps进行后期修图，pr和ae进行视频剪辑。
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
-        <section id="photo" class="photo-section" style="display:none;">
-            <div class="container">
-                <h2>我的照片</h2>
-                <div class="photo-container">
-                    <img id="myPhoto" src="无标题.png" alt="我的照片" style="max-width: 100%; border-radius: 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.18);">
+        </div>
+    </section>
+
+    <!-- 教育经历部分 -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">教育经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023-2027</div>
+                    <div class="timeline-content">
+                        <h3>武汉科技大学 - 工业设计（本科）</h3>
+                        <p class="university-info">专业排名：前30%</p>
+                        <div class="course-list">
+                            <h4>主修课程：</h4>
+                            <div class="courses">
+                                <span class="course-tag">产品设计</span>
+                                <span class="course-tag">人机工程学</span>
+                                <span class="course-tag">工业设计</span>
+                                <span class="course-tag">计算机辅助设计</span>
+                                <span class="course-tag">机械设计基础</span>
+                            </div>
+                        </div>
+                        <div class="achievements">
+                            <h4>在校成就：</h4>
+                            <ul>
+                                <li>在校期间同主修工业设计专业的同时还辅修了计算机的专业</li>
+                                <li>在校期间多次参加各个学科的竞赛，大一和大二两个学年均获得了全国大学生英语竞赛院级三等奖</li>
+                                <li>目前已提交入党申请书成为了一名入党积极分子</li>
+                                <li>从大一入校开始担任班级的安全委员，并且多次获得学院优秀班干部的称号</li>
+                                <li>积极参加青年志愿者活动，参加爱心暑假等社会实践活动</li>
+                                <li>在校期间参加了乒乓球社团并且担任我们学院的乒乓球院队队长，多次参加乒乓球比赛</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024-2027</div>
+                    <div class="timeline-content">
+                        <h3>武汉科技大学 - 计算机（辅修）</h3>
+                        <p class="university-info">专业排名：前20%</p>
+                        <div class="course-list">
+                            <h4>主修课程：</h4>
+                            <div class="courses">
+                                <span class="course-tag">计算机组成原理</span>
+                                <span class="course-tag">数据库系统概论</span>
+                                <span class="course-tag">数据结构</span>
+                                <span class="course-tag">计算机网络</span>
+                                <span class="course-tag">操作系统</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
-    <!-- 登录弹窗 -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>登录</h2>
-            <form id="loginForm" onsubmit="return handleLogin(event)">
-                <input type="text" placeholder="用户名" required>
-                <input type="password" placeholder="密码" required>
-                <button type="submit">登录</button>
-            </form>
         </div>
-    </div>
-    <script src="main.js"></script>
+    </section>
+
+    <!-- 专业技能部分 -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">专业技能</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-paint-brush"></i> 设计软件</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Figma</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Photoshop</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Blender</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Keyshot</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-cube"></i> 3D建模</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Rhino</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SolidWorks</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">AutoCAD</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-video"></i> 影视制作</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Premiere Pro</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">After Effects</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> 编程技能</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">C++</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">MySQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-robot"></i> AI工具</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Midjourney</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Stable Diffusion</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ChatGPT</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 荣誉奖项部分 -->
+    <section id="awards" class="awards">
+        <div class="container">
+            <h2 class="section-title">荣誉奖项</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>2023~2024学年</h3>
+                    <p class="award-title">全国大学生英语竞赛院级三等奖</p>
+                    <p class="award-description">在全国大学生英语竞赛中表现优异，获得院级三等奖</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>2024~2025学年</h3>
+                    <p class="award-title">全国大学生英语竞赛院级三等奖</p>
+                    <p class="award-description">连续两年在全国大学生英语竞赛中获得优异成绩</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>多次获得</h3>
+                    <p class="award-title">学院优秀班干部称号</p>
+                    <p class="award-description">担任班级安全委员期间，多次获得学院优秀班干部称号</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>社会实践</h3>
+                    <p class="award-title">青年志愿者活动积极参与者</p>
+                    <p class="award-description">积极参加青年志愿者活动和爱心暑假等社会实践活动</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-table-tennis"></i>
+                    </div>
+                    <h3>体育成就</h3>
+                    <p class="award-title">学院乒乓球队队长</p>
+                    <p class="award-description">担任学院乒乓球队队长，多次参加乒乓球比赛并取得优异成绩</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>政治面貌</h3>
+                    <p class="award-title">入党积极分子</p>
+                    <p class="award-description">已提交入党申请书，成为入党积极分子</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式部分 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">联系方式</h2>
+            <div class="contact-content">
+                <div class="contact-left">
+                    <h3>让我们建立联系</h3>
+                    <p>如果您对我的工作感兴趣，或者有任何合作机会，欢迎随时与我联系。我期待与您的交流！</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>电话</h4>
+                                <p>13720317900</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>邮箱</h4>
+                                <p>2607007440@qq.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-weixin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>微信号</h4>
+                                <p>hcx185381</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-right">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="主题" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="留言内容" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 黄晨翔. 保留所有权利.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html> 
