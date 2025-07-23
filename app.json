@@ -1,0 +1,34 @@
+{
+  "name": "HuangChenxiangApp",
+  "displayName": "黄晨翔的简历",
+  "expo": {
+    "name": "黄晨翔的简历",
+    "slug": "huang-chenxiang-resume",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6366f1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.huangchenxiang.resume"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#6366f1"
+      },
+      "package": "com.huangchenxiang.resume"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
