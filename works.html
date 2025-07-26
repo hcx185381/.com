@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品展示 - 黄晨翔</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><i class="fas fa-cube"></i>HCX</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="works.html" class="active">作品展示</a></li>
+                    <li><a href="skills.html">技能</a></li>
+                    <li><a href="experience.html">经历</a></li>
+                    <li><a href="awards.html">荣誉</a></li>
+                    <li><a href="location.html">位置</a></li>
+                    <li><a href="contact.html">联系方式</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 轮播图展示 -->
+    <section class="carousel-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>作品展示</h2>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-slide active">
+                        <img src="图片/顶视图.png" alt="顶视图" />
+                        <div class="slide-caption">顶视图</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="图片/右视图.png" alt="右视图" />
+                        <div class="slide-caption">右视图</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="图片/左视图.png" alt="左视图" />
+                        <div class="slide-caption">左视图</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="图片/正视图.png" alt="正视图" />
+                        <div class="slide-caption">正视图</div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots" id="carousel-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                    <button class="carousel-btn next-btn" id="next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>黄晨翔 · 工业设计师</h3>
+                <p>创造用户喜爱的设计体验</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <p>&copy; 2025 黄晨翔. 保留所有权利</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 轮播图逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentSlide = 0;
+            let autoPlayInterval;
+
+            function showSlide(index) {
+                // 隐藏所有幻灯片
+                carouselSlides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // 显示当前幻灯片
+                carouselSlides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % carouselSlides.length;
+                showSlide(nextIndex);
+            }
+
+            function prevSlide() {
+                const prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+                showSlide(prevIndex);
+            }
+
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(nextSlide, 6000); // 每6秒切换一次
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+            }
+
+            // 事件监听器
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    stopAutoPlay();
+                    prevSlide();
+                    startAutoPlay();
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    stopAutoPlay();
+                    nextSlide();
+                    startAutoPlay();
+                });
+            }
+
+            // 指示点点击事件
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoPlay();
+                    showSlide(index);
+                    startAutoPlay();
+                });
+            });
+
+            // 鼠标悬停时暂停自动播放
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                carouselContainer.addEventListener('mouseleave', startAutoPlay);
+            }
+
+            // 开始自动播放
+            startAutoPlay();
+        });
+    </script>
+</body>
+</html> 

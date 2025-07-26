@@ -7,19 +7,24 @@
     <title>黄晨翔 - 工业设计师</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <audio id="phone-ring-audio" src="phone-ring.mp3" preload="auto"></audio>
 </head>
 <body>
     <!-- 导航栏 -->
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo"><i class="fas fa-cube"></i>HCX</a>
+                <a href="index.html" class="logo"><i class="fas fa-cube"></i>HCX</a>
                 <ul class="nav-links">
-                    <li><a href="#about">关于我</a></li>
-                    <li><a href="#skills">专业技能</a></li>
-                    <li><a href="#education">教育经历</a></li>
-                    <li><a href="#awards">荣誉奖项</a></li>
-                    <li><a href="#contact">联系方式</a></li>
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="works.html">作品展示</a></li>
+                    <li><a href="skills.html">技能</a></li>
+                    <li><a href="experience.html">经历</a></li>
+                    <li><a href="awards.html">荣誉</a></li>
+                    <li><a href="location.html">位置</a></li>
+                    <li><a href="contact.html">联系方式</a></li>
                 </ul>
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -35,244 +40,14 @@
                 <h1>你好，我是<span>黄晨翔</span></h1>
                 <p>工业设计师 & 计算机爱好者 | 创造用户喜爱的设计体验</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn btn-primary">联系我</a>
-                    <a href="#skills" class="btn btn-outline">查看技能</a>
+                    <a href="contact.html" class="btn btn-primary">联系我</a>
+                    <a href="skills.html" class="btn btn-outline">查看技能</a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="shape"></div>
-                <div class="shape"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 关于我 -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>关于我</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>工业设计师 & 技术爱好者</h3>
-                    <p>我是一名充满创造力的工业设计师，专注于产品设计和用户体验。同时，我对计算机技术有着浓厚的兴趣，辅修计算机专业让我具备了跨学科的能力。</p>
-                    <p>我擅长将设计思维与技术实现相结合，通过Rhino建模、Blender渲染和Adobe套件后期处理，创造出既美观又实用的产品设计。</p>
-                    <p>作为一名入党积极分子和班级安全委员，我具备良好的团队协作能力和责任心，多次获得优秀班干部称号。</p>
-                </div>
-                <div class="info-list">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="info-content">
-                            <h4>基本信息</h4>
-                            <p>男 | 20岁 | 籍贯：宜昌 | 入党积极分子</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="info-content">
-                            <h4>教育背景</h4>
-                            <p>武汉科技大学 | 工业设计本科 (2023-2027)</p>
-                            <p>计算机辅修 (2024-2027)</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="info-content">
-                            <h4>个人优势</h4>
-                            <p>团队协作 | 沟通能力 | 手绘动手能力 | 多软件精通</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 专业技能 -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-title">
-                <h2>专业技能</h2>
-            </div>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>设计软件</h3>
-                    </div>
-                    <div class="skill-body">
-                        <ul class="skill-list">
-                            <li>Photoshop (Ps)</li>
-                            <li>Blender</li>
-                            <li>Keyshot</li>
-                            <li>Premiere Pro (Pr)</li>
-                            <li>After Effects (Ae)</li>
-                            <li>AUTOCAD</li>
-                            <li>SolidWorks</li>
-                            <li>Rhino</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>编程技术</h3>
-                    </div>
-                    <div class="skill-body">
-                        <ul class="skill-list">
-                            <li>C++</li>
-                            <li>MySQL</li>
-                            <li>前端开发基础</li>
-                            <li>UI/UX设计工具</li>
-                            <li>Figma</li>
-                            <li>Axure</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>办公工具</h3>
-                    </div>
-                    <div class="skill-body">
-                        <ul class="skill-list">
-                            <li>Microsoft Office套件</li>
-                            <li>WPS办公软件</li>
-                            <li>Xmind思维导图</li>
-                            <li>Powerpoint演示</li>
-                            <li>Excel数据分析</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 教育经历 -->
-    <section id="education" class="education">
-        <div class="container">
-            <div class="section-title">
-                <h2>教育经历</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2023 - 2027</span>
-                        <h3>工业设计本科</h3>
-                        <h4>武汉科技大学</h4>
-                        <p>专业排名: 前30%</p>
-                        <p>主修课程: 产品设计、人机工程学、工业设计、计算机辅助设计、机械设计基础</p>
-                        <ul>
-                            <li>担任班级安全委员，多次获得优秀班干部称号</li>
-                            <li>参加乒乓球社团并担任院队队长</li>
-                            <li>积极参加青年志愿者和社会实践活动</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024 - 2027</span>
-                        <h3>计算机辅修</h3>
-                        <h4>武汉科技大学</h4>
-                        <p>专业排名: 前20%</p>
-                        <p>主修课程: 计算机组成原理、数据库系统概论、数据结构、计算机网络、操作系统</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 荣誉奖项 -->
-    <section id="awards" class="awards">
-        <div class="container">
-            <div class="section-title">
-                <h2>荣誉奖项</h2>
-            </div>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>2023-2024学年</h3>
-                    </div>
-                    <div class="skill-body">
-                        <ul class="skill-list">
-                            <li>全国大学生英语竞赛校级三等奖</li>
-                            <li>学院优秀班干部称号</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>2024-2025学年</h3>
-                    </div>
-                    <div class="skill-body">
-                        <ul class="skill-list">
-                            <li>全国大学生英语竞赛校级三等奖</li>
-                            <li>学院优秀班干部称号</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>资格证书</h3>
-                    </div>
-                    <div class="skill-body">
-                        <ul class="skill-list">
-                            <li>驾驶证C1</li>
-                            <li>普通话二级乙等</li>
-                            <li>计算机二级</li>
-                            <li>大学英语四级</li>
-                            <li>大学英语六级</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系方式 -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>联系方式</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>电话</h4>
-                            <p>13720317900</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-weixin"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>微信</h4>
-                            <p>hcx185381</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>邮箱</h4>
-                            <p>2607007440@qq.com</p>
-                        </div>
-                    </div>
+                <!-- 用图片替代SVG地球，并保留自转动画 -->
+                <div class="earth-rotate">
+                    <img src="hcx.png" alt="地球" class="earth-img" width="160" height="160" />
                 </div>
             </div>
         </div>

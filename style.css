@@ -119,6 +119,9 @@ nav {
 .hero-content {
     max-width: 650px;
     z-index: 2;
+    margin-left: -40px; /* 可根据实际效果调整 */
+    align-items: flex-start;
+    text-align: left;
 }
 
 .hero h1 {
@@ -159,6 +162,7 @@ nav {
     gap: 20px;
     animation: fadeInUp 1s ease 0.4s forwards;
     opacity: 0;
+    justify-content: flex-start;
 }
 
 .btn {
@@ -224,6 +228,34 @@ nav {
     height: 80%;
     opacity: 0.7;
     animation: rotate 20s linear infinite reverse;
+}
+
+/* 自转地球动画 */
+.earth-rotate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+}
+.earth-group {
+    transform-origin: 80px 80px;
+    animation: earth-spin 6s linear infinite;
+}
+@keyframes earth-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.earth-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 24px rgba(33,150,243,0.18);
+    /* 保证图片自转 */
+    animation: earth-spin 6s linear infinite;
+    display: block;
 }
 
 /* 内容区块通用样式 */
@@ -545,6 +577,16 @@ footer {
     transform: translateY(-5px);
 }
 
+/* 玻璃效果卡片 */
+.glass {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari 兼容 */
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 /* 动画关键帧 */
 @keyframes fadeInUp {
     from {
@@ -596,6 +638,15 @@ footer {
     
     .hero-image {
         display: none;
+    }
+    
+    .hero-content {
+        margin-left: 0;
+        padding-left: 10px;
+    }
+    .earth-rotate {
+        width: 120px;
+        height: 120px;
     }
     
     .nav-links {
@@ -668,6 +719,427 @@ footer {
     .contact-icon {
         margin-right: 0;
         margin-bottom: 15px;
+    }
+}
+
+/* 邮箱弹窗样式 */
+.email-modal {
+    display: none;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    justify-content: center;
+    align-items: flex-end;
+}
+.email-modal.show {
+    display: flex;
+}
+.email-modal-mask {
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1;
+}
+.email-modal-content {
+    position: relative;
+    width: 380px;
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -2px 24px rgba(33,150,243,0.12);
+    padding: 0 24px 20px 24px;
+    z-index: 2;
+    animation: email-modal-in 0.3s cubic-bezier(.4,0,.2,1);
+}
+@keyframes email-modal-in {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.email-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 18px;
+    font-weight: 500;
+}
+.email-modal-close {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+.email-modal-close:hover {
+    color: #2196F3;
+}
+.email-form-group {
+    margin: 18px 0 0 0;
+    display: flex;
+    align-items: center;
+}
+.email-form-group label {
+    width: 60px;
+    color: #555;
+    font-size: 15px;
+}
+.email-form-group input[type="text"] {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 15px;
+    background: #fafbfc;
+}
+.email-form-group textarea {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 15px;
+    background: #fafbfc;
+    resize: vertical;
+}
+.email-form-actions {
+    text-align: right;
+    margin-top: 18px;
+}
+.email-send-btn {
+    background: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.email-send-btn:hover {
+    background: #1769aa;
+}
+@media (max-width: 480px) {
+    .email-modal-content {
+        width: 98vw;
+        padding: 0 6vw 20px 6vw;
+    }
+    .email-form-group label {
+        width: 48px;
+    }
+}
+
+/* 拨号盘弹窗样式 */
+.phone-modal {
+    display: none;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 10000;
+    justify-content: center;
+    align-items: flex-end;
+}
+.phone-modal.show {
+    display: flex;
+}
+.phone-modal-mask {
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.28);
+    z-index: 1;
+}
+.phone-modal-content {
+    position: relative;
+    width: 370px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -2px 32px rgba(33,150,243,0.18);
+    padding: 0 24px 32px 24px;
+    z-index: 2;
+    animation: phone-modal-in 0.4s cubic-bezier(.4,0,.2,1);
+    color: #fff;
+}
+@keyframes phone-modal-in {
+    from { transform: translateY(100%) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.phone-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.phone-modal-close {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.2s;
+}
+.phone-modal-close:hover {
+    color: #ffeb3b;
+}
+.phone-dialer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 18px;
+}
+.phone-number {
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 12px #0008;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 10px 24px;
+    box-shadow: 0 2px 16px #0002;
+}
+.dialer-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-gap: 16px;
+    margin-bottom: 22px;
+}
+.dial-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px #0003;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.12s, box-shadow 0.12s;
+}
+.dial-btn:active {
+    transform: scale(0.92);
+    box-shadow: 0 1px 4px #0005;
+}
+.dial-btn::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+    pointer-events: none;
+}
+.dial-btn:active::after {
+    width: 120px;
+    height: 120px;
+}
+.call-btn {
+    margin-top: 8px;
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 48px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    box-shadow: 0 4px 24px #0072ff44;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 2px;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.12s;
+    position: relative;
+    overflow: hidden;
+}
+.call-btn:active {
+    background: linear-gradient(90deg, #0072ff 0%, #00c6ff 100%);
+    box-shadow: 0 2px 8px #0072ff88;
+    transform: scale(0.97);
+}
+.call-btn i {
+    font-size: 1.4rem;
+}
+@media (max-width: 480px) {
+    .phone-modal-content {
+        width: 98vw;
+        padding: 0 4vw 32px 4vw;
+    }
+    .phone-number {
+        font-size: 1.3rem;
+        padding: 8px 8px;
+    }
+    .dialer-pad {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+    }
+    .dial-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+    .call-btn {
+        padding: 10px 18vw;
+        font-size: 1rem;
+    }
+}
+
+/* 轮播图样式 */
+.carousel-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.carousel-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+    background: rgba(0,0,0,0.1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.carousel-btn {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.carousel-btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.carousel-btn i {
+    color: #333;
+    font-size: 16px;
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: rgba(255,255,255,0.8);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        height: 300px;
+    }
+    
+    .slide-caption {
+        bottom: 80px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .carousel-controls {
+        bottom: 20px;
+        gap: 15px;
+        padding: 8px 15px;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
     }
 }
 /* ==================== END OF style.css ==================== */

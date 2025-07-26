@@ -80,5 +80,155 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.boxShadow = '';
         });
     });
+
+    // 初始化EmailJS
+    (function(){
+      emailjs.init('aHIdUSDiP8HzAwYWC');
+    })();
+
+    // 邮箱弹窗逻辑
+    const emailIcon = document.getElementById('email-icon');
+    const emailModal = document.getElementById('email-modal');
+    const emailModalClose = document.getElementById('email-modal-close');
+    const emailModalMask = document.getElementById('email-modal-mask');
+    const emailForm = document.getElementById('email-form');
+
+    if (emailIcon && emailModal && emailModalClose && emailModalMask && emailForm) {
+        emailIcon.addEventListener('click', () => {
+            emailModal.classList.add('show');
+        });
+        emailModalClose.addEventListener('click', () => {
+            emailModal.classList.remove('show');
+        });
+        emailModalMask.addEventListener('click', () => {
+            emailModal.classList.remove('show');
+        });
+        emailForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const subject = document.getElementById('email-subject').value;
+            const message = document.getElementById('email-message').value;
+            emailjs.send('service_9qkg3c8', 'template_5m1d586', {
+                subject: subject,
+                message: message
+            })
+            .then(function(response) {
+                alert('消息已发送！感谢您的联系。');
+                emailModal.classList.remove('show');
+                emailForm.reset();
+            }, function(error) {
+                alert('发送失败，请稍后再试。');
+            });
+        });
+    }
+
+    // 拨号盘弹窗逻辑
+    const phoneIcon = document.getElementById('phone-icon');
+    const phoneModal = document.getElementById('phone-modal');
+    const phoneModalClose = document.getElementById('phone-modal-close');
+    const phoneModalMask = document.getElementById('phone-modal-mask');
+    const callBtn = document.getElementById('call-btn');
+    const phoneRingAudio = document.getElementById('phone-ring-audio');
+
+    if (phoneIcon && phoneModal && phoneModalClose && phoneModalMask && callBtn) {
+        phoneIcon.addEventListener('click', () => {
+            phoneModal.classList.add('show');
+        });
+        phoneModalClose.addEventListener('click', () => {
+            phoneModal.classList.remove('show');
+        });
+        phoneModalMask.addEventListener('click', () => {
+            phoneModal.classList.remove('show');
+        });
+        callBtn.addEventListener('click', () => {
+            // 播放拨号动画
+            callBtn.classList.add('calling');
+            callBtn.innerHTML = '<i class="fas fa-phone-volume fa-shake"></i> 拨号中...';
+            if (phoneRingAudio) {
+                phoneRingAudio.currentTime = 0;
+                phoneRingAudio.play();
+            }
+            setTimeout(() => {
+                callBtn.classList.remove('calling');
+                callBtn.innerHTML = '<i class="fas fa-phone"></i> 呼叫';
+                phoneModal.classList.remove('show');
+                if (phoneRingAudio) {
+                    phoneRingAudio.pause();
+                    phoneRingAudio.currentTime = 0;
+                }
+                window.location.href = 'call-status.html';
+            }, 800);
+        });
+    }
+
+    // 轮播图逻辑
+    const carouselSlides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentSlide = 0;
+    let autoPlayInterval;
+
+    function showSlide(index) {
+        // 隐藏所有幻灯片
+        carouselSlides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // 显示当前幻灯片
+        carouselSlides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % carouselSlides.length;
+        showSlide(nextIndex);
+    }
+
+    function prevSlide() {
+        const prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+        showSlide(prevIndex);
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 6000); // 每6秒切换一次
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // 事件监听器
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            stopAutoPlay();
+            prevSlide();
+            startAutoPlay();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            stopAutoPlay();
+            nextSlide();
+            startAutoPlay();
+        });
+    }
+
+    // 指示点点击事件
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopAutoPlay();
+            showSlide(index);
+            startAutoPlay();
+        });
+    });
+
+    // 鼠标悬停时暂停自动播放
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // 开始自动播放
+    startAutoPlay();
 });
 // ==================== END OF script.js ====================
