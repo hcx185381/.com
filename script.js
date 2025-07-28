@@ -165,70 +165,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
-    let currentSlide = 0;
-    let autoPlayInterval;
 
-    function showSlide(index) {
-        // 隐藏所有幻灯片
-        carouselSlides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // 显示当前幻灯片
-        carouselSlides[index].classList.add('active');
-        dots[index].classList.add('active');
-        currentSlide = index;
-    }
+    if (carouselSlides.length > 0 && dots.length > 0) {
+        let currentSlide = 0;
+        let autoPlayInterval;
 
-    function nextSlide() {
-        const nextIndex = (currentSlide + 1) % carouselSlides.length;
-        showSlide(nextIndex);
-    }
+        function showSlide(index) {
+            if (index < 0 || index >= carouselSlides.length) return;
+            // 隐藏所有幻灯片
+            carouselSlides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            // 显示当前幻灯片
+            carouselSlides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
 
-    function prevSlide() {
-        const prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
-        showSlide(prevIndex);
-    }
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % carouselSlides.length;
+            showSlide(nextIndex);
+        }
 
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 6000); // 每6秒切换一次
-    }
+        function prevSlide() {
+            const prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+            showSlide(prevIndex);
+        }
 
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
+        function startAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextSlide, 6000); // 每6秒切换一次
+        }
 
-    // 事件监听器
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            stopAutoPlay();
-            prevSlide();
-            startAutoPlay();
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // 事件监听器
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                prevSlide();
+                startAutoPlay();
+            });
+            nextBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                nextSlide();
+                startAutoPlay();
+            });
+        }
+
+        // 指示点点击事件
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoPlay();
+                showSlide(index);
+                startAutoPlay();
+            });
         });
-        
-        nextBtn.addEventListener('click', () => {
-            stopAutoPlay();
-            nextSlide();
-            startAutoPlay();
-        });
+
+        // 鼠标悬停时暂停自动播放
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+            carouselContainer.addEventListener('mouseleave', startAutoPlay);
+        }
+
+        // 开始自动播放
+        startAutoPlay();
     }
-
-    // 指示点点击事件
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopAutoPlay();
-            showSlide(index);
-            startAutoPlay();
-        });
-    });
-
-    // 鼠标悬停时暂停自动播放
-    const carouselContainer = document.querySelector('.carousel-container');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-        carouselContainer.addEventListener('mouseleave', startAutoPlay);
-    }
-
-    // 开始自动播放
-    startAutoPlay();
 });
 // ==================== END OF script.js ====================
