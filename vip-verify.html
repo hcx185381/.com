@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄金无敌大会员验证 - 黄晨翔</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 新增的标题样式 */
+        .vip-header h2 {
+            font-size: 3.5rem; /* 增大字号 */
+            color: var(--gold); /* 改为金黄色 */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* 添加金色光晕效果 */
+            margin-bottom: 15px;
+            transition: all 0.3s ease; /* 添加过渡效果 */
+        }
+
+        /* 调整二维码图片样式 */
+        .qrcode-image {
+            width: 100%; /* 宽度100%适应容器 */
+            height: auto; /* 高度自适应 */
+            max-width: 350px; /* 最大宽度 */
+            max-height: 525px; /* 最大高度 (350 * 1.5) */
+            object-fit: contain; /* 完整显示图片不裁剪 */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 调整二维码容器 */
+        .qrcode-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 350px;
+            max-height: 525px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        /* 媒体查询调整 */
+        @media (max-width: 768px) {
+            .vip-header h2 {
+                font-size: 2.8rem; /* 中等屏幕字号 */
+            }
+            
+            .qrcode-container {
+                max-width: 280px;
+                max-height: 420px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .vip-header h2 {
+                font-size: 2.2rem; /* 小屏幕字号 */
+            }
+            
+            .qrcode-container {
+                max-width: 220px;
+                max-height: 330px;
+            }
+        }
+        
+        /* 保留原有其他样式 */
+        :root {
+            --gold: #FFD700;
+            --vip-purple: #8A2BE2;
+            --dark-text: #222;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            color: #fff;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        .vip-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+            border: 4px solid var(--gold);
+        }
+        
+        .vip-header {
+            background: linear-gradient(90deg, var(--vip-purple), #4B0082);
+            padding: 40px 20px;
+            color: white;
+            position: relative;
+        }
+        
+        .vip-crown {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .vip-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .vip-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #D4AF37);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        .vip-content {
+            padding: 40px;
+        }
+        
+        .qrcode-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qrcode-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--gold);
+            border-radius: 16px;
+            animation: borderPulse 2s infinite;
+            pointer-events: none;
+        }
+        
+        .qrcode-label {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .alipay-logo {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+        
+        .verification-section {
+            margin: 30px 0;
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 2px solid #f0f0f0;
+        }
+        
+        .verification-header {
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .verification-header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--vip-purple), #4B0082);
+            border-radius: 3px;
+        }
+        
+        .verification-header h3 {
+            color: var(--dark-text);
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .verification-header h3 i {
+            font-size: 1.8rem;
+            color: var(--dark-text);
+        }
+        
+        .verification-header p {
+            color: var(--dark-text);
+            font-size: 1.1rem;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        .verification-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .verification-input input {
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            font-size: 1.8rem;
+            border: 3px solid #e0e0e0;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s;
+            font-weight: 700;
+            color: var(--dark-text);
+            background: #f9f9f9;
+        }
+        
+        .verification-input input:focus {
+            border-color: var(--vip-purple);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+            background: #fff;
+            transform: translateY(-3px);
+        }
+        
+        .verify-btn {
+            background: linear-gradient(90deg, var(--vip-purple), #4B0082);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .verify-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .vip-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .vip-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+        }
+        
+        .vip-btn-primary {
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .vip-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+        }
+        
+        .vip-btn-outline {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+        }
+        
+        .vip-btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .status-message {
+            margin-top: 20px;
+            min-height: 30px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+            }
+        }
+        
+        @keyframes borderPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vip-container">
+        <div class="vip-header">
+            <div class="vip-crown">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h2>黄金无敌大会员专享</h2>
+            <p>该部分为黄金无敌大会员专享内容，想看更多精彩作品展示，请扫码支付开通会员</p>
+            <div class="vip-badge">
+                <i class="fas fa-star"></i> VIP EXCLUSIVE <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <div class="vip-content">
+            <div class="qrcode-section">
+                <img src="https://cdn-icons-png.flaticon.com/512/179/179316.png" alt="支付宝" class="alipay-logo">
+                <div class="qrcode-container">
+                    <div class="qrcode-border"></div>
+                    <!-- 支付宝二维码图片 - 尺寸调整为1170×1755 -->
+                    <img src="images/alipay-qrcode.jpg" alt="支付宝支付二维码" class="qrcode-image">
+                </div>
+                <div class="qrcode-label">支付宝扫码支付</div>
+            </div>
+            
+            <div class="verification-section">
+                <div class="verification-header">
+                    <h3><i class="fas fa-key"></i> 支付成功验证</h3>
+                    <p>支付完成后，请输入交易单号后6位进行验证</p>
+                </div>
+                
+                <div class="verification-input">
+                    <input type="text" maxlength="1" id="code1" data-index="0">
+                    <input type="text" maxlength="1" id="code2" data-index="1">
+                    <input type="text" maxlength="1" id="code3" data-index="2">
+                    <input type="text" maxlength="1" id="code4" data-index="3">
+                    <input type="text" maxlength="1" id="code5" data-index="4">
+                    <input type="text" maxlength="1" id="code6" data-index="5">
+                </div>
+                
+                <button class="verify-btn" id="verify-btn">
+                    <i class="fas fa-lock-open"></i> 验证并解锁
+                </button>
+                
+                <div class="status-message" id="status-message"></div>
+            </div>
+            
+            <div class="vip-actions">
+                <a href="index.html" class="vip-btn vip-btn-primary">
+                    <i class="fas fa-home"></i> 返回首页
+                </a>
+                <a href="contact.html" class="vip-btn vip-btn-outline">
+                    <i class="fas fa-headset"></i> 联系客服
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 输入框自动切换焦点
+        const inputs = document.querySelectorAll('.verification-input input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+        
+        // 验证按钮逻辑
+        document.getElementById('verify-btn').addEventListener('click', function() {
+            const code = Array.from(inputs).map(input => input.value).join('');
+            const statusMessage = document.getElementById('status-message');
+            
+            if (code.length !== 6) {
+                statusMessage.textContent = "请输入完整的6位交易单号";
+                statusMessage.style.color = "#e74c3c";
+                statusMessage.style.background = "#ffe8e8";
+                return;
+            }
+            
+            // 模拟验证过程
+            statusMessage.textContent = "验证中...";
+            statusMessage.style.color = "#3498db";
+            statusMessage.style.background = "#e8f4ff";
+            
+            // 模拟API请求延迟
+            setTimeout(() => {
+                // 这里应该是实际的验证逻辑
+                // 为演示目的，我们假设"185381"是有效代码
+                if (code === "185381") {
+                    statusMessage.innerHTML = '<i class="fas fa-check-circle"></i> 验证成功！正在解锁作品展示...';
+                    statusMessage.style.color = "#27ae60";
+                    statusMessage.style.background = "#e8f9f0";
+                    
+                    // 存储VIP状态
+                    localStorage.setItem('isVIP', 'true');
+                    // 设置VIP有效期（1天）
+                    const expiryDate = new Date();
+                    expiryDate.setDate(expiryDate.getDate() + 1);
+                    localStorage.setItem('vipExpiry', expiryDate.getTime());
+                    
+                    // 跳转到作品展示页面
+                    setTimeout(() => {
+                        window.location.href = "works.html";
+                    }, 1500);
+                } else {
+                    statusMessage.textContent = "验证失败，请检查交易单号是否正确";
+                    statusMessage.style.color = "#e74c3c";
+                    statusMessage.style.background = "#ffe8e8";
+                    
+                    // 清空输入框
+                    inputs.forEach(input => input.value = '');
+                    inputs[0].focus();
+                }
+            }, 1000);
+        });
+        
+        // 检查是否已经是VIP
+        document.addEventListener('DOMContentLoaded', function() {
+            const isVIP = localStorage.getItem('isVIP');
+            if (isVIP === 'true') {
+                // 检查VIP是否过期
+                const expiry = localStorage.getItem('vipExpiry');
+                const now = new Date().getTime();
+                
+                if (expiry && now < expiry) {
+                    // 如果VIP未过期，直接跳转到作品展示页面
+                    window.location.href = "works.html";
+                } else {
+                    // 如果VIP已过期，清除状态
+                    localStorage.removeItem('isVIP');
+                    localStorage.removeItem('vipExpiry');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

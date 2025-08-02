@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录状态测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .logged-in {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .not-logged-in {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>登录状态测试页面</h1>
+        
+        <div id="status-display"></div>
+        
+        <div id="actions">
+            <a href="login.html" class="btn btn-primary">去登录页面</a>
+            <a href="about.html" class="btn btn-success">访问关于我页面</a>
+            <button onclick="clearLogin()" class="btn btn-danger">清除登录状态</button>
+            <button onclick="checkStatus()" class="btn btn-primary">检查登录状态</button>
+        </div>
+        
+        <div id="info" style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 5px;">
+            <h3>测试说明：</h3>
+            <ol>
+                <li>点击"去登录页面"进行登录</li>
+                <li>登录成功后，再次访问"关于我页面"应该无需重新登录</li>
+                <li>使用"清除登录状态"可以重置登录状态</li>
+                <li>使用"检查登录状态"可以查看当前状态</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function checkStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const loginTime = localStorage.getItem('loginTime');
+            const statusDisplay = document.getElementById('status-display');
+            
+            if (isLoggedIn === 'true') {
+                const loginDate = new Date(parseInt(loginTime));
+                statusDisplay.innerHTML = `
+                    <div class="status logged-in">
+                        <strong>✅ 已登录</strong><br>
+                        登录时间: ${loginDate.toLocaleString()}<br>
+                        登录状态: 有效
+                    </div>
+                `;
+            } else {
+                statusDisplay.innerHTML = `
+                    <div class="status not-logged-in">
+                        <strong>❌ 未登录</strong><br>
+                        请先登录才能访问"关于我"页面
+                    </div>
+                `;
+            }
+        }
+        
+        function clearLogin() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('loginTime');
+            alert('登录状态已清除！');
+            checkStatus();
+        }
+        
+        // 页面加载时自动检查状态
+        window.onload = function() {
+            checkStatus();
+        };
+    </script>
+</body>
+</html> 

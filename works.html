@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>
+    // 检查VIP状态
+    document.addEventListener('DOMContentLoaded', function() {
+        const isVIP = localStorage.getItem('isVIP');
+        if (isVIP !== 'true') {
+            // 如果不是VIP，重定向到验证页面
+            window.location.href = 'vip-verify.html';
+        }
+    });
+</script>
+<script>
+    // 检查VIP状态
+    document.addEventListener('DOMContentLoaded', function() {
+        const isVIP = localStorage.getItem('isVIP');
+        if (isVIP !== 'true') {
+            // 如果不是VIP，重定向到验证页面
+            window.location.href = 'vip-verify.html';
+            return;
+        }
+        
+        // 检查VIP是否过期
+        const expiry = localStorage.getItem('vipExpiry');
+        const now = new Date().getTime();
+        
+        if (expiry && now > expiry) {
+            // 如果VIP已过期，清除状态并重定向
+            localStorage.removeItem('isVIP');
+            localStorage.removeItem('vipExpiry');
+            window.location.href = 'vip-verify.html';
+        }
+    });
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品展示 - 黄晨翔</title>

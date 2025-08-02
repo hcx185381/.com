@@ -1,3 +1,21 @@
+// VIP验证逻辑
+function checkVIPStatus() {
+    // 检查作品展示页面是否需要VIP
+    if (window.location.pathname.includes('works.html')) {
+        const isVIP = localStorage.getItem('isVIP');
+        if (isVIP !== 'true') {
+            // 如果不是VIP，重定向到验证页面
+            window.location.href = 'vip-verify.html';
+        }
+    }
+}
+
+// 页面加载时检查VIP状态
+document.addEventListener('DOMContentLoaded', function() {
+    checkVIPStatus();
+    
+    // 其他现有代码...
+});
 // ==================== script.js ====================
 document.addEventListener('DOMContentLoaded', function() {
     // 导航栏滚动效果

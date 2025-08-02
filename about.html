@@ -16,6 +16,26 @@
     })();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // 页面加载时检查登录状态
+        window.onload = function() {
+            // 检查是否已经登录
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                // 如果未登录，重定向到登录页面
+                window.location.href = 'login.html';
+            }
+        };
+
+        // 登出功能
+        function logout() {
+            // 清除登录状态
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('loginTime');
+            // 跳转到首页
+            window.location.href = 'index.html';
+        }
+    </script>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -26,12 +46,13 @@
                 <ul class="nav-links">
                     <li><a href="index.html">首页</a></li>
                     <li><a href="about.html" class="active">关于我</a></li>
-                    <li><a href="works.html">作品展示</a></li>
+                    <li><a href="vip-verify.html">作品展示</a></li>
                     <li><a href="skills.html">技能</a></li>
                     <li><a href="experience.html">经历</a></li>
                     <li><a href="awards.html">荣誉</a></li>
                     <li><a href="location.html">位置</a></li>
                     <li><a href="contact.html">联系方式</a></li>
+                    <li><a href="#" onclick="logout()" style="color: #e74c3c;"><i class="fas fa-sign-out-alt"></i> 登出</a></li>
                 </ul>
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
