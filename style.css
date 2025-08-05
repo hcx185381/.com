@@ -243,9 +243,11 @@ nav {
 
 /* 移动端：缩小适配 */
 @media (max-width: 768px) {
-    .earth-rotate {
-        width: 300px;
-        height: 300px;
+    .hero-image {
+        display: block; /* 确保显示 */
+        width: 200px;   /* 缩小尺寸 */
+        height: 200px;
+        right: 10px;   /* 调整位置 */
     }
 }.earth-group {
     transform-origin: 80px 80px;
